@@ -5,6 +5,7 @@ export class Car {
     y: number;
     width: number;
     height: number;
+    controls: Controls;
 
     constructor(x: number, y: number, width: number, height:number) {
         this.x = x;
