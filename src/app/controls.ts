@@ -10,10 +10,10 @@ export class Controls {
         this.right = false;
         this.reverse = false;
 
-        this.#addKeyboardListeners();
+        this.addKeyboardListeners();
     }
 
-    #addKeyboardListeners() {
+    private addKeyboardListeners() {
         document.addEventListener('keydown', (event) => {
             switch (event.key) {
                 case 'ArrowUp':

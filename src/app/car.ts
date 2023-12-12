@@ -30,6 +30,10 @@ export class Car {
     }
 
     update() {
+        this.move();
+    }
+
+    private move() {
         if (this.controls.forward) {
             this.speed += this.acceleration;
             if (this.speed > this.maxSpeed) this.speed = this.maxSpeed;
