@@ -16,6 +16,13 @@ export class Car {
         this.controls = new Controls();
     }
 
+    update() {
+        const speed = 2;
+
+        if (this.controls.forward) this.y -= speed;
+        if (this.controls.reverse) this.y += speed;
+    }
+
     draw(ctx: CanvasRenderingContext2D | null) {
         if (!ctx) return;
 
