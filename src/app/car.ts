@@ -11,6 +11,7 @@ export class Car {
     maxSpeed: number;
     maxReverseSpeed: number;
     friction: number;
+    angle: number;
 
     constructor(x: number, y: number, width: number, height:number) {
         this.x = x;
@@ -23,6 +24,7 @@ export class Car {
         this.maxSpeed = 3;
         this.maxReverseSpeed = this.maxSpeed/2;
         this.friction = 0.05;
+        this.angle = 0;
 
         this.controls = new Controls();
     }
@@ -49,10 +51,10 @@ export class Car {
             this.speed = 0;
         }
         if (this.controls.left) {
-            this.x -= this.speed;
+            this.angle += 0.03;
         }
         if (this.controls.right) {
-            this.x += this.speed;
+            this.angle -= 0.03;
         }
 
         this.y -= this.speed;
@@ -61,13 +63,19 @@ export class Car {
     draw(ctx: CanvasRenderingContext2D | null) {
         if (!ctx) return;
 
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(-this.angle);
+        
         ctx.beginPath();
         ctx.rect(
-            this.x - this.width / 2, 
-            this.y - this.height / 2, 
+            -this.width / 2, 
+            -this.height / 2, 
             this.width, 
             this.height
         );
         ctx.fill();
+
+        ctx.restore()
     }
 }
