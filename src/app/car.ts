@@ -36,6 +36,15 @@ export class Car {
             this.speed -= this.acceleration;
             if (this.speed < -this.maxReverseSpeed) this.speed = -this.maxReverseSpeed;
         }
+        if (this.speed > this.maxSpeed) this.speed = this.maxSpeed;
+        if (this.speed < -this.maxReverseSpeed) this.speed = this.maxReverseSpeed;
+
+        if (this.speed > 0) {
+            this.speed -= this.friction;
+        }
+        if (this.speed < 0) {
+            this.speed += this.friction;
+        }
         this.y -= this.speed;
     }
 
