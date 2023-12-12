@@ -48,6 +48,12 @@ export class Car {
         if (Math.abs(this.speed) < this.friction) {
             this.speed = 0;
         }
+        if (this.controls.left) {
+            this.x -= this.speed;
+        }
+        if (this.controls.right) {
+            this.x += this.speed;
+        }
 
         this.y -= this.speed;
     }
