@@ -1,3 +1,5 @@
+import { Controls } from './controls'
+
 export class Car {
     x: number;
     y: number;
@@ -9,6 +11,8 @@ export class Car {
         this.y = y;
         this.width = width;
         this.height = height;
+
+        this.controls = new Controls();
     }
 
     draw(ctx: CanvasRenderingContext2D | null) {
