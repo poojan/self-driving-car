@@ -6,6 +6,11 @@ export class Car {
     width: number;
     height: number;
     controls: Controls;
+    speed: number;
+    acceleration: number;
+    maxSpeed: number;
+    maxReverseSpeed: number;
+    friction: number;
 
     constructor(x: number, y: number, width: number, height:number) {
         this.x = x;
@@ -13,14 +18,25 @@ export class Car {
         this.width = width;
         this.height = height;
 
+        this.speed = 0;
+        this.acceleration = 0.2;
+        this.maxSpeed = 3;
+        this.maxReverseSpeed = this.maxSpeed/2;
+        this.friction = 0.05;
+
         this.controls = new Controls();
     }
 
     update() {
-        const speed = 2;
-
-        if (this.controls.forward) this.y -= speed;
-        if (this.controls.reverse) this.y += speed;
+        if (this.controls.forward) {
+            this.speed += this.acceleration;
+            if (this.speed > this.maxSpeed) this.speed = this.maxSpeed;
+        }
+        if (this.controls.reverse) {
+            this.speed -= this.acceleration;
+            if (this.speed < -this.maxReverseSpeed) this.speed = -this.maxReverseSpeed;
+        }
+        this.y -= this.speed;
     }
 
     draw(ctx: CanvasRenderingContext2D | null) {
